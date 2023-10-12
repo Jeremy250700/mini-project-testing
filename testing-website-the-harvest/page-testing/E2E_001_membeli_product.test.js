@@ -11,7 +11,7 @@ const CartPage = require('../page-object/CartPage')
 const PickupOrder = require('../page-object/Pickup/PickupOrder')
 const PaymentPage = require('../page-object/PaymentPage')
 
-describe('FT_007_e2e',function(){
+describe('FT_007_e2e_membeli_product',function(){
     /**@type {WebDriver} */ let driver
     /**@type {LoginPage} */ let loginPage
     /**@type {HomePage} */ let homePage
@@ -47,8 +47,10 @@ describe('FT_007_e2e',function(){
             await driver.sleep(500)
             await theHarvestCakes.clickCakesTitle('1')
             await theHarvestDetailPage.clickBuyNow()
+            await theHarvestDetailPage.resetCart()
             await driver.sleep(500)
             const grandTotal = await cartPage.getOrderGrandTotal()
+            console.log(grandTotal)
             await cartPage.scrollDown()
             await cartPage.clickPickUp()
             await cartPage.clickContinueButton()

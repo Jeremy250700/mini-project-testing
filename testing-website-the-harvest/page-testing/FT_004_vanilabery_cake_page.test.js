@@ -6,7 +6,7 @@ const TheHarvestCakes = require('../page-object/Menus/TheHarvestCakes/TheHarvest
 const TheHarvestDetailPage = require('../page-object/Menus/TheHarvestCakes/TheHarvestDetailPage')
 const CartPage = require('../page-object/CartPage')
 
-describe.skip('FT_004_vanillabery_cake_page', function(){
+describe('FT_004_vanillabery_cake_page', function(){
     /**@type {WebDriver} */ let driver
     /**@type {LoginPage} */ let loginPage
     /**@type {TheHarvestCakes} */let theHarvestCakes
@@ -65,24 +65,14 @@ describe.skip('FT_004_vanillabery_cake_page', function(){
             expect(subtotal).to.equal('Rp 490.000')
         })
     })
-
-/*     describe('VCP_004 Mencoba mengganti main image menjadi gambar thumbnail image 2', function(){
-        it('Gambar berhasil diubah',async function(){
-            await theHarvestDetailPage.openPage('luxury-cakes','2999/vanillabery-cake/')
-            await theHarvestDetailPage.clickSmallThumbnailSrc('2')
-            const thumbNailSrc = await theHarvestDetailPage.getSmallThumbnailSrc('2')
-            await driver.sleep(500)
-            const mainImage = await theHarvestDetailPage.getMainImage()
-            expect(thumbNailSrc).to.equal(mainImage)
-        })
-    }) */
     describe('VCP_004 Mencoba fitur add to cart',function(){
         it('Menampilkan success message "Vanilabery Cake added to cart"', async function(){
             await theHarvestDetailPage.openPage('luxury-cakes','2999/vanillabery-cake/')
+            await driver.sleep(500)
             await theHarvestDetailPage.clickAddToCartButton()
+            await theHarvestDetailPage.resetCart()
             await driver.sleep(500)
             const message = await theHarvestDetailPage.getSuccesMessage()
-            await driver.sleep(500)
             expect(message).to.equal('Vanilabery Cake added to cart')
         })
         it('Tombol cart berubah menjadi "1 item"',async function(){
@@ -110,11 +100,10 @@ describe.skip('FT_004_vanillabery_cake_page', function(){
             expect(cart).to.equal('2 Items')
         })
         it('Nama product sama', async function(){
-            const title1 = await theHarvestDetailPage.getTitleCake()
             await cartPage.openPage()
             await driver.sleep(500)
             const title2 = await cartPage.getItemTitle('1')
-            expect(title1).to.equal(title2)
+            expect(title2).to.equal('Vanilabery Cake')
             
         })
         it('Quantity nya 2', async function(){

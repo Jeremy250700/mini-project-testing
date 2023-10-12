@@ -12,7 +12,6 @@ class TheHarvestDetailPage extends Page {
         await this.openUrl(`menus/${kategoriCake}/`+path)
     }
 
-    reset = true
     titleCakeElement = By.css('.container.product-details .box h1')
     minElement = By.id('min')
     plusElement = By.id('plus')
@@ -69,23 +68,25 @@ class TheHarvestDetailPage extends Page {
         await this.driver.findElement(this.resetCartElement).click()
     }
 
-    async clickAddToCartButton(){
+    async clickAddToCartButton() {
         await this.driver.findElement(this.addToCartElement).click()
-        const resetCartModal = await this.driver.findElement(By.css('.tingle-modal.credit-3ds.store-changed'))
-        const isModalVisible = await this.driver.wait(until.elementIsVisible(resetCartModal))
-        if(isModalVisible){
-            await this.resetCartProccess()
-        }
+    }
+    async clickBuyNow() {
+        await this.driver.findElement(this.buyNowElement).click()
     }
 
-    async clickBuyNow(){
-        await this.driver.findElement(this.buyNowElement).click()
-        const resetCartModal = await this.driver.findElement(By.css('.tingle-modal.credit-3ds.store-changed'))
-        const isModalVisible = await this.driver.wait(until.elementIsVisible(resetCartModal))
-        if(isModalVisible){
-            await this.resetCartProccess()
+    async resetCart(){
+        try{
+            const resetCartModal = await this.driver.wait(until.elementLocated(By.css('.tingle-modal.credit-3ds.store-changed')), 5000)
+            if (resetCartModal) {
+                const isModalVisible = await this.driver.wait(until.elementIsVisible(resetCartModal))
+                if (isModalVisible) {
+                    await this.resetCartProccess()
+                }
+            }
+        }catch (e){
+            await this.driver.sleep(500)
         }
-        await this.driver.sleep(500)
     }
     
     async getCartText(){

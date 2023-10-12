@@ -8,7 +8,7 @@ const CartPage = require('../page-object/CartPage')
 const PickupOrder = require('../page-object/Pickup/PickupOrder')
 const PaymentPage = require('../page-object/PaymentPage')
 
-describe.skip('FT_006_order_info', function(){
+describe('FT_006_order_info', function(){
     /**@type {WebDriver} */ let driver
     /**@type {LoginPage} */ let loginPage
     /**@type {MenuPage} */let menuPage
@@ -58,6 +58,15 @@ describe.skip('FT_006_order_info', function(){
             expect(pickupTime).to.equal('17 Oct 2023, 12:00 - 13:00')
         })
 
+    })
+    describe('OI_002_mencoba checkout tanpa input',function(){
+        it('Tetap pada halaman order info',async function(){
+            await pickupOrder.openPage()
+            const title = await pickupOrder.getTitle()
+            await pickupOrder.scrollDownSmall()
+            await driver.findElement(pickupOrder.continueElement).click()
+            expect(title).to.equal('SET STORE')
+        })
     })
 
     afterEach(async function () {

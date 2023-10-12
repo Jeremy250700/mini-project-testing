@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const setupDriver = require('../utils/setupDriver')
 const HomePage = require('../page-object/HomePage')
 
-describe.skip('FT_001_home_page',function(){
+describe('FT_001_home_page',function(){
     /**@type {WebdriverIO.Browser} */ let driver
     /**@type {HomePage} */let homePage
 

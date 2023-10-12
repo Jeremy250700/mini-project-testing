@@ -61,6 +61,14 @@ class ClassPage extends Page{
     get endAt(){
         return this.driver.$('//*/android.widget.LinearLayout/android.widget.LinearLayout[6]/android.widget.LinearLayout/android.widget.EditText')
     }
+    async scrollDown(){
+        await this.driver.touchPerform([
+            { action: 'press', options: { x: 353, y:  977} },
+            { action: 'wait', options: { ms: 500 } },
+            { action: 'moveTo', options: { x: 353, y: 149 } },
+            { action: 'release' },
+        ])
+    }
     async time(hour,min){
         await this.driver.$('id=android:id/am_label').click()
         await this.driver.$(`~${hour}`).click()
@@ -73,8 +81,14 @@ class ClassPage extends Page{
     get teacher(){
         return this.driver.$('//*/android.widget.LinearLayout/android.widget.LinearLayout[8]/android.widget.LinearLayout/android.widget.EditText')
     }
+    get addNewTeacher(){
+        return this.driver.$('//*/android.widget.FrameLayout/android.widget.ListView/android.view.ViewGroup[1]')
+    }
     get teacherName(){
-        return this.driver.$('//*/android.widget.FrameLayout/android.widget.ListView/android.view.ViewGroup[2]')
+        return this.driver.$('//*/android.widget.FrameLayout/android.widget.ListView/android.view.ViewGroup[2]/android.widget.TextView')
+    }
+    get teacherDetails(){
+        return this.driver.$('/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView')
     }
 
     async addNewClassProccess(date,startHour,startMin,endHour,endMin,room){

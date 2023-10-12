@@ -4,7 +4,7 @@ const setupDriver = require('../utils/setupDriver')
 const TheHarvestCakes = require('../page-object/Menus/TheHarvestCakes/TheHarvestCakes')
 const TheHarvestDetailPage = require('../page-object/Menus/TheHarvestCakes/TheHarvestDetailPage')
 
-describe.skip('FT_003_luxury_cakes_page', function(){
+describe('FT_003_luxury_cakes_page', function(){
     /**@type {WebDriver} */ let driver
     /**@type {TheHarvestCakes} */let theHarvestCakes
     /**@type {TheHarvestDetailPage} */let theHarvestDetailPage

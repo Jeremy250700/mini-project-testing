@@ -5,7 +5,7 @@ const LoginPage = require('../page-object/LoginPage')
 const HomePage = require('../page-object/HomePage')
 const LogoutPage = require('../page-object/LogoutPage')
 
-describe.skip('FT_001_login_page', function(){
+describe('FT_001_login_page', function(){
     /**@type {WebDriver} */ let driver
     /**@type {LoginPage} */ let loginPage
     /**@type {HomePage} */ let homePage
@@ -23,7 +23,6 @@ describe.skip('FT_001_login_page', function(){
         it('Menampilkan nama akun pada halaman utama', async function(){
             await loginPage.openPage()
             await loginPage.loginProcess('082230229417','abc192518')
-            await driver.sleep(1000)
 
             const accountName = await homePage.accountButton()
             expect(accountName).to.equal('Leonard…')
@@ -39,7 +38,6 @@ describe.skip('FT_001_login_page', function(){
         it('Email kosong',async function(){
             await loginPage.openPage()
             await loginPage.loginProcess('','')
-            await driver.sleep(1000)
 
             const email = await loginPage.emailText()
             expect(email).to.equal('')
@@ -54,7 +52,6 @@ describe.skip('FT_001_login_page', function(){
         it('Email kosong',async function(){
             await loginPage.openPage()
             await loginPage.loginProcess('','abc192518')
-            await driver.sleep(1000)
 
             const email = await loginPage.emailText()
             expect(email).to.equal('')
@@ -65,7 +62,6 @@ describe.skip('FT_001_login_page', function(){
         it('Password kosong',async function(){
             await loginPage.openPage()
             await loginPage.loginProcess('jeremysaputra25@gmail.com','')
-            await driver.sleep(1000)
 
             const password = await loginPage.passwordText()
             expect(password).to.equal('')
@@ -76,7 +72,6 @@ describe.skip('FT_001_login_page', function(){
         it('Muncul error text "Please enter a valid mobile phone or email address."',async function(){
             await loginPage.openPage()
             await loginPage.loginProcess('test','test')
-            await driver.sleep(1000)
 
             const error = await loginPage.errorEmailText()
             expect(error).to.equal('Please enter a valid mobile phone or email address.')
@@ -91,7 +86,6 @@ describe.skip('FT_001_login_page', function(){
         it('Muncul error text "Please enter a valid mobile phone or email address."',async function(){
             await loginPage.openPage()
             await loginPage.loginProcess('test','abc192518')
-            await driver.sleep(1000)
 
             const error = await loginPage.errorEmailText()
             expect(error).to.equal('Please enter a valid mobile phone or email address.')
@@ -106,7 +100,6 @@ describe.skip('FT_001_login_page', function(){
         it('Muncul error text "Your email / mobile number or password is incorrect"',async function(){
             await loginPage.openPage()
             await loginPage.loginProcess('082230229417','test')
-            await driver.sleep(1000)
 
             const error = await loginPage.errorPasswordText()
             expect(error).to.equal('Your email / mobile number or password is incorrect')

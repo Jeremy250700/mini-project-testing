@@ -7,7 +7,7 @@ const TheHarvestDetailPage = require('../page-object/Menus/TheHarvestCakes/TheHa
 const CartPage = require('../page-object/CartPage')
 const PickupOrder = require('../page-object/Pickup/PickupOrder')
 
-describe.skip('FT_005_cart_page', function(){
+describe('FT_005_cart_page', function(){
     /**@type {WebDriver} */ let driver
     /**@type {LoginPage} */ let loginPage
     /**@type {MenuPage} */let menuPage

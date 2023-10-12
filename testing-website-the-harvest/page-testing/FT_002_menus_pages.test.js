@@ -4,7 +4,7 @@ const setupDriver = require('../utils/setupDriver')
 const MenuPage = require('../page-object/Menus/MenuPage')
 const TheHarvestCakes = require('../page-object/Menus/TheHarvestCakes/TheHarvestCakes')
 
-describe.skip('FT_002_menus_page', function(){
+describe('FT_002_menus_page', function(){
     /**@type {WebDriver} */ let driver
     /**@type {MenuPage} */let menuPage
     /**@type {TheHarvestCakes} */let theHarvestCakes
@@ -20,7 +20,6 @@ describe.skip('FT_002_menus_page', function(){
         it('Menampilkan title Luxury Cakes',async function(){
             await menuPage.openPage()
             await menuPage.gotoLuxuryCakesPage()
-            await driver.sleep(1000)
 
             const title = await theHarvestCakes.getTitle()
             expect(title).to.equal('Luxury Cakes')
@@ -31,7 +30,6 @@ describe.skip('FT_002_menus_page', function(){
         it('Menampilkan title Signature Cakes',async function(){
             await menuPage.openPage()
             await menuPage.gotoSignatureCakesPage()
-            await driver.sleep(1000)
 
             const title = await theHarvestCakes.getTitle()
             expect(title).to.equal('Signature Cakes')
@@ -42,7 +40,6 @@ describe.skip('FT_002_menus_page', function(){
         it('Menampilkan title Whole Cakes',async function(){
             await menuPage.openPage()
             await menuPage.gotoWholeCakesPage()
-            await driver.sleep(1000)
 
             const title = await theHarvestCakes.getTitle()
             expect(title).to.equal('Whole Cakes')

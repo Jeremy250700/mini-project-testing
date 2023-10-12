@@ -29,13 +29,29 @@ class TeacherPage extends Page{
     get email(){
         return this.driver.$('//*/android.widget.LinearLayout[5]/android.widget.LinearLayout/android.widget.EditText')
     }
-
-    async addTeacherProccess(name,special,location,hour,email){
+    get phone(){
+        return this.driver.$('//*/android.widget.LinearLayout[6]/android.widget.LinearLayout/android.widget.EditText')
+    }
+    get editButton(){
+        return this.driver.$('id=com.swazerlab.schoolplanner:id/btnPrimary')
+    }
+    async scrollDown(){
+        await this.driver.touchPerform([
+            { action: 'press', options: { x: 353, y:  730} },
+            { action: 'wait', options: { ms: 500 } },
+            { action: 'moveTo', options: { x: 353, y: 186 } },
+            { action: 'release' },
+        ])
+    }
+    async addTeacherProccess(name,special,location,hour,email,phone){
         await this.teacherName.setValue(name)
         await this.teacherSpecialization.setValue(special)
+        await this.driver.hideKeyboard()
         await this.officeLocation.setValue(location)
         await this.officeHour.setValue(hour)
         await this.email.setValue(email)
+        await this.scrollDown()
+        await this.phone.setValue(phone)
         await this.saveButton.click()
     }
 }

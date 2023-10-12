@@ -22,6 +22,9 @@ class PickupOrder extends Page{
             })
         })
     }
+    async openPage(){
+        await this.openUrl('carts/order-info')
+    }
     /**
      @param {string} store
      */
